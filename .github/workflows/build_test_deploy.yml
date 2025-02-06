@@ -41,6 +41,7 @@ jobs:
               with:
                 service_id: ${{ secrets.MY_RENDER_SERVICE_ID_BE }}
                 api_key: ${{ secrets.MY_RENDER_API_KEY }}
+                wait_deploy: true 
     
   deploy-fe:
     needs: build_test
@@ -51,3 +52,4 @@ jobs:
           with:
             service_id: ${{ secrets.MY_RENDER_SERVICE_ID_FE }}
             api_key: ${{ secrets.MY_RENDER_API_KEY }}
+            wait_deploy: true 
