@@ -1,0 +1,30 @@
+name: Send notifications
+
+on:
+  push:
+    branches: [ "staging" ]
+
+jobs:
+  build_test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout the repository
+      uses: actions/checkout@v4
+    - name: Use Node.js 22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'npm'
+    - name: Install NPM modules
+      run: npm install
+    - name: Start BackEnd
+      run: npm run start-be &
+    - name: Start FrontEnd
+      run: npm run start-fe &
+    - name: Install Browsers
+      run: npx playwright install
+    - name: Execute UI tests
+      run: npm run test:ui
+    
